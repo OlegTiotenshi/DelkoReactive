@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<reactiveui:ReactiveContentPage x:Class="Delko.UI.Pages.Profile.RegisterVehiclePage"
+                                xmlns="http://xamarin.com/schemas/2014/forms"
+                                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                                xmlns:reactiveui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                                xmlns:vm="clr-namespace:Delko.BL.ViewModels.Profile"
+                                x:TypeArguments="vm:RegisterVehicleViewModel"
+                                BackgroundColor="White"
+                                NavigationPage.HasNavigationBar="False"
+                                Visual="Material">
+    <FlexLayout Padding="16,0"
+                AlignItems="Stretch"
+                Direction="Column"
+                HorizontalOptions="FillAndExpand"
+                JustifyContent="SpaceEvenly"
+                VerticalOptions="FillAndExpand">
+        <Label Style="{StaticResource AuthTitle}"
+               Text="Регистрация" />
+
+        <StackLayout Spacing="15">
+            <StackLayout Spacing="0">
+                <Label FontSize="17"
+                       HorizontalOptions="FillAndExpand"
+                       HorizontalTextAlignment="Start"
+                       Style="{StaticResource AuthTitle}"
+                       Text="Выбрать ТС" />
+                <Picker BackgroundColor="White"
+                        FontFamily="{StaticResource SemiBold}"
+                        FontSize="14"
+                        HeightRequest="45">
+                    <Picker.Items>
+                        <x:String>Не выбрано</x:String>
+                        <x:String>Т222ТТ</x:String>
+                        <x:String>Т333ТТ (занято)</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+
+            <StackLayout Spacing="00">
+                <Label FontSize="17"
+                       HorizontalOptions="FillAndExpand"
+                       HorizontalTextAlignment="Start"
+                       Style="{StaticResource AuthTitle}"
+                       Text="Выбрать полуприцеп" />
+                <Picker BackgroundColor="White"
+                        FontFamily="{StaticResource SemiBold}"
+                        FontSize="14"
+                        HeightRequest="45">
+                    <Picker.Items>
+                        <x:String>Без полуприцепа</x:String>
+                        <x:String>П999ПП</x:String>
+                        <x:String>П555ПП</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label FontFamily="{StaticResource Regular}"
+                       FontSize="14"
+                       HorizontalOptions="FillAndExpand"
+                       Text="Если нужного ТС или прицепа нет, позвоните дежурному"
+                       VerticalTextAlignment="Center" />
+                <Image HeightRequest="50"
+                       Source="phone"
+                       WidthRequest="50" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CallCommand}" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Spacing="16">
+            <Button Command="{Binding SaveCommand}"
+                    Text="Сохранить"
+                    VerticalOptions="FillAndExpand" />
+            <Label Style="{StaticResource AuthSMSLabel}"
+                   Text="Пропустить регистрацию">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Skip_Command}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </FlexLayout>
+</reactiveui:ReactiveContentPage>
